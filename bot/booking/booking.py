@@ -1,6 +1,6 @@
 import booking.constants as const
 from selenium import webdriver
-
+from booking.booking_filtration import BookingFiltration
 class Booking(webdriver.Chrome):
     def __init__(self, driver_path=r"C:\chromedriver\chromedriver.exe", teardown=False):
         self.driver_path = driver_path
@@ -80,3 +80,6 @@ class Booking(webdriver.Chrome):
         )
         search_button.click()
 
+    def apply_filtrations(self):
+        filtration = BookingFiltration(driver=self)
+        filtration.apply_star_rating(3, 4, 5)
